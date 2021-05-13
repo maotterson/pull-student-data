@@ -33,6 +33,7 @@
             this.button = new System.Windows.Forms.Button();
             this.textCourseNum = new System.Windows.Forms.TextBox();
             this.labelCourseNum = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblToken
@@ -77,18 +78,28 @@
             this.labelCourseNum.TabIndex = 3;
             this.labelCourseNum.Text = "Course Number";
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(12, 230);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(41, 13);
+            this.labelStatus.TabIndex = 5;
+            this.labelStatus.Text = "Ready!";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 201);
+            this.ClientSize = new System.Drawing.Size(514, 252);
+            this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.textCourseNum);
             this.Controls.Add(this.labelCourseNum);
             this.Controls.Add(this.button);
             this.Controls.Add(this.textToken);
             this.Controls.Add(this.lblToken);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Course Student Data";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,6 +112,7 @@
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.TextBox textCourseNum;
         private System.Windows.Forms.Label labelCourseNum;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
 

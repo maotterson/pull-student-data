@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PullStudentData.Models;
+using System.IO;
 
 namespace PullStudentData
 {
@@ -26,11 +27,42 @@ namespace PullStudentData
                 string courseNum = textCourseNum.Text;
 
                 StudentDataRequest request = new StudentDataRequest(token, courseNum);
-                request.getOnce(1);
+                List<string> students = getData(request);
+                createCSV(students);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private List<string> getData(StudentDataRequest request)
+        {
+            labelStatus.Text = "Getting data...";
+            return request.getOnce(1);
+        }
+
+
+        private void createCSV(List<string> students)
+        {
+            StreamWriter sw = new StreamWriter("output.csv");
+            try
+            {
+                labelStatus.Text = "Saving data...";
+                sw.WriteLine("StudentID,StudentName");
+
+                foreach (string student in students)
+                {
+                    sw.WriteLine(student);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sw.Close();
+                labelStatus.Text = "Ready!";
             }
         }
     }

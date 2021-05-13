@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using PullStudentData.Models;
+using Newtonsoft.Json;
 
 namespace PullStudentData.Models
 {
@@ -39,15 +40,18 @@ namespace PullStudentData.Models
 
             if (response.IsSuccessStatusCode)
             {
-                string result = response.Content.ReadAsStringAsync().Result;
-
+                string result = response.Content.ReadAsStringAsync().Result; 
+                List<Student> studentList = JsonConvert.DeserializeObject<List<Student>>(result);
+                foreach(Student student in studentList)
+                {
+                    students.Add($"{student.sis_user_id},{student.name}");
+                }
+                return students;
             }
             else
             {
                 throw new Exception("Error getting data");
             }
-
-            return students;
         }
     }
 }

@@ -26,9 +26,24 @@ namespace PullStudentData.Models
             
         }
 
-        public List<String> getAll()
+        public List<String> getAll(ref System.Windows.Forms.Label statusLabel)
         {
             List<String> students = new List<String>();
+            int currentPage = 1;
+            while (true)
+            {
+                statusLabel.Text = "Working... " + currentPage;
+                List<String> currentStudents = getOnce(currentPage);
+                if(currentStudents == null || currentPage==10)
+                {
+                    break;
+                }
+                else
+                {
+                    students.AddRange(currentStudents);
+                    currentPage++;
+                }
+            }
             return students;
         }
 
@@ -50,7 +65,7 @@ namespace PullStudentData.Models
             }
             else
             {
-                throw new Exception("Error getting data");
+                return null;
             }
         }
     }

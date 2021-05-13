@@ -38,7 +38,7 @@ namespace PullStudentData
         private List<string> getData(StudentDataRequest request)
         {
             labelStatus.Text = "Getting data...";
-            return request.getOnce(1);
+            return request.getAll(ref labelStatus);
         }
 
 
